@@ -6,7 +6,6 @@ def insert_array_from_line_of_file(file)
 
     File.open(file, "r") do |f|
         while line = f.gets
-            #line = line.split(' ')
             data_array.push(line)
         end
     end
@@ -14,15 +13,22 @@ def insert_array_from_line_of_file(file)
     return data_array
 end
 
+username = ARGV[0]
+
 # 引数からレシピのデータファイルと指定されたレシピIDを取得
-recipe_data_file = ARGV[0]
-recipe_id = ARGV[1]
+recipe_data_file = ARGV[1]
+
+#ARGV[1] = integer
+recipe_id = ARGV[2]
 
 # レシピ一覧用の配列を準備
 recipes = Array.new
 
 # データファイルからレシピデータを抽出する
 recipes = insert_array_from_line_of_file(recipe_data_file)
+
+
+puts "ユーザー名: #{username}"
 
 # レシピを一つずつ出力
 recipes.each.with_index(1) do |name, id|
@@ -34,6 +40,3 @@ recipes.each.with_index(1) do |name, id|
 
     puts "#{id}: #{name}"
 end
-
-#s = 'オムライス http://cookpad.com/recipe/2653946'
-#p s.split
