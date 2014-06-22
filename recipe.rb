@@ -1,17 +1,33 @@
+# ファイルを行ごとのデータ配列に格納する
+def insert_array_from_line_of_file(file)
+    data_array = Array.new
+
+    File.open(file, "r") do |f|
+        while line = f.gets
+            data_array.push(line)
+        end
+    end
+
+    return data_array
+end
+
+# 引数からレシピのデータファイルと指定されたレシピIDを取得
+recipe_data_file = ARGV[0]
+select_recipe_id = ARGV[1]
+
 # レシピ一覧用の配列を準備
 recipes = Array.new
 
-# 引数からレシピのデータファイルを取得
-recipe_data_file = ARGV[0]
-
-# データファイルからレシピ一覧を作成
-File.open(recipe_data_file, "r") do |f|
-    while name = f.gets
-        recipes.push(name)
-    end
-end
+# データファイルからレシピデータを抽出する
+recipes = insert_array_from_line_of_file(recipe_data_file)
 
 # レシピを一つずつ出力
 recipes.each.with_index(1) do |name, id|
+    # レシピIDが指定されている場合は
+    # 指定されているID以外をスキップする
+    if select_recipe_id && select_recipe_id.to_i != id then
+        next
+    end
+
     puts "#{id}: #{name}"
 end
