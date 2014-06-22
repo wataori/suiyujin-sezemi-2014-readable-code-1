@@ -5,4 +5,4 @@ recipe.rbをレシピデータ（recipe-data.txt）を引数として実行
 
     ruby recipe.rb recipe-data.txt
 
-コンソールへ "オムライス" と出力されることを確認
+コンソールへレシピデータ（recipe-data.txt）に書かれているレシピ名が出力されることを確認
